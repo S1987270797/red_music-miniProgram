@@ -1,0 +1,30 @@
+<!--pages/home-music/index.wxml-->
+<!-- 搜索框 -->
+<van-search background="#fafafa" shape="round" placeholder="搜索歌曲" disabled bind:click-input="handleSearchClick"></van-search>
+<!-- 轮播图 -->
+<swiper class="swiper" indicator-dots autoplay circular indicator-active-color="#FFFFFF">
+  <block wx:for="{{banners}}" wx:key="bannerId">
+    <swiper-item class="swiper-item">
+      <image src="{{item.pic}}" class="swiper-image" mode="widthFix" bindload="onSwiperImageLoaded"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 热门歌曲 -->
+<view class="hitSong">
+  <area-header title="热门歌曲" class="header" jumpTo="{{['detail-playlist', 3778678]}}"></area-header>
+  <view class="hitSongList">
+    <block wx:for="{{hitSongsTop6}}" wx:key="id">
+      <song-item-v1 item="{{item}}" orderNum="{{index}}" bind:changeCurrentPlaylist="changeCurrentPlaylist"></song-item-v1>
+    </block>
+  </view>
+</view>
+<!-- 热门歌单 -->
+<song-playlist-area title="热门歌单" playLists="{{hitPlayLists}}"></song-playlist-area>
+<song-playlist-area title="华语歌单" playLists="{{mandarinPlayLists}}"></song-playlist-area>
+<song-playlist-area title="古风歌单" playLists="{{ancientPlayLists}}"></song-playlist-area>
+<song-playlist-area title="欧美歌单" playLists="{{westernPlayLists}}"></song-playlist-area>
+<!-- 巅峰榜 -->
+<rankings-area rankings="{{ homeMusicRankings }}"></rankings-area>
+<!-- 底部播放条 -->
+<play-bar safeAreaInsetBottom="{{false}}"></play-bar>
+<playlist-popup></playlist-popup>

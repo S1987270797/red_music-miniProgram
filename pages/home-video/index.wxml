@@ -1,0 +1,8 @@
+<!--pages/home-video/index.wxml-->
+<view class="video">
+  <!-- 开始渲染每个mv -->
+  <block wx:for="{{topMvs}}" wx:key="id">
+    <video-item-v1 item="{{item}}" class="video-item" bindtap="handleVideoItemClick" data-item="{{item}}"></video-item-v1>
+  </block>
+</view>
+<play-bar safeAreaInsetBottom="{{false}}"></play-bar>

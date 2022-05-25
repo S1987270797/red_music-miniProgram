@@ -1,0 +1,14 @@
+<view class="song-playlist-area">
+  <!--components/song-menu-list/index.wxml-->
+  <area-header title="{{title}}" jumpTo="{{['more-playlist', title]}}"></area-header>
+  <view class="menu-content">
+    <scroll-view scroll-x enable-flex class="menu-list" show-scrollbar="{{false}}">
+      <!-- 开始遍历 -->
+      <block wx:for="{{playLists}}" wx:key="id">
+        <view class="playlist">
+          <song-playlist-area-item playListsItem="{{item}}"></song-playlist-area-item>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

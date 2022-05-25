@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-search": "@vant/weapp/search/index",
+    "song-item-v2": "/components/song-item-v2",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "play-bar": "/components/play-bar/index"
+  }
+}

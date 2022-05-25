@@ -1,0 +1,25 @@
+<!--pages/detail-video/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<video src="{{mvUrl.url}}" class="video" enable-play-gesture autoplay></video>
+<!-- 视频信息 -->
+<view class="info">
+  <text class="title">{{mvDetail.name ? mvDetail.name : mvDetail.title}}</text>
+  <text class="artistName">{{mvDetail.artistName ? mvDetail.artistName : mvDetail.creator.nickname }}</text>
+  <text class="playCount" space="nbsp">{{mvDetail.playCount ? format.formatCount(mvDetail.playCount) : format.formatCount(mvDetail.playTime)}}次播放 - </text>
+  <text class="publishTime">{{mvDetail.publishTime.length === 10 ? mvDetail.publishTime : format.formatTime(mvDetail.publishTime,'date')}}</text>
+</view>
+<!-- 推荐视频 -->
+<view class="related">
+  <text class="tuijian">推荐视频</text>
+  <!-- 开始遍历 -->
+  <block wx:for="{{mvRelated}}" wx:key="vid">
+    <view class="item" bindtap="mvItemClick" data-vid="{{item.vid}}">
+      <image class="cover" src="{{item.coverUrl}}" mode="widthFix"></image>
+      <text class="playCount">{{format.formatCount(item.playTime)}}</text>
+      <view class="infoBox">
+        <text class="title">{{item.title}}</text>
+        <text class="nickname">{{item.creator[0].userName}}</text>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,64 @@
+function formatCount(count) {
+  var _count = parseInt(count);
+  if (_count >= 100000000) {
+    return (_count / 100000000).toFixed(1) + "亿";
+  } else if (_count > 10000) {
+    return (_count / 10000).toFixed(1) + "万";
+  } else {
+    return _count + "";
+  }
+}
+
+function padLeftZero(time) {
+  var _time = time + "";
+  return ("00" + _time).slice(_time.length);
+}
+
+// 传入毫秒，
+function formatDuration(duration) {
+  var _duration = duration / 1000;
+  var minute = Math.floor(_duration / 60); // 分钟
+  var second = Math.floor(_duration % 60); // 秒钟
+
+  return padLeftZero(minute) + ":" + padLeftZero(second);
+}
+
+function add0(m) {
+  return m < 10 ? "0" + m : m;
+}
+// 传入时间戳
+function formatTime(time, destination) {
+  if (time == null) {
+    return "";
+  }
+  if (arguments.length === 0) {
+    return null;
+  }
+  var date = getDate(time); //在wxs中不能使用new Date()来处理日期
+  var y = date.getFullYear();
+  var m = padLeftZero(date.getMonth() + 1);
+  var d = padLeftZero(date.getDate());
+  var h = padLeftZero(date.getHours());
+  var i = padLeftZero(date.getMinutes());
+  var s = padLeftZero(date.getSeconds());
+  var a = padLeftZero(date.getDay());
+  var time_str = "";
+  if (destination == "month") {
+    time_str = y + "-" + m;
+  } else if (destination == "date") {
+    time_str = y + "-" + m + "-" + d;
+  } else if (destination == "datetime") {
+    time_str = y + "-" + m + "-" + d + " " + h + ":" + i + ":" + s;
+  } else if (destination == "onlyMonth") {
+    time_str = m;
+  } else if (destination == "onlyYear") {
+    time_str = y;
+  }
+  return time_str;
+}
+
+module.exports = {
+  formatCount: formatCount,
+  formatDuration: formatDuration,
+  formatTime: formatTime,
+};
